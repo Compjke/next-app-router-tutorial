@@ -1,10 +1,13 @@
+'use client';
 import clsx from 'clsx';
+import { useFormStatus } from 'react-dom';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
 export function Button({ children, className, ...rest }: ButtonProps) {
+  const { pending } = useFormStatus();
   return (
     <button
       {...rest}
@@ -13,7 +16,7 @@ export function Button({ children, className, ...rest }: ButtonProps) {
         className,
       )}
     >
-      {children}
+      {pending ? <span className='animate-spin'>⏳</span> : children}
     </button>
   );
 }
