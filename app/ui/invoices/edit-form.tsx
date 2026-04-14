@@ -10,6 +10,7 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import { useActionState } from 'react';
 import { useFormState } from 'react-dom';
 
 const initialState: State = { message: null, errors: {} };
@@ -22,7 +23,7 @@ export default function EditInvoiceForm({
   customers: CustomerField[];
 }) {
   const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
-  const [state, formAction] = useFormState(updateInvoiceWithId, initialState);
+  const [state, formAction] = useActionState(updateInvoiceWithId, initialState);
   return (
     <form action={formAction}>
       <div className='rounded-md bg-gray-50 p-4 md:p-6'>
